@@ -16,8 +16,7 @@ Expected output:
 Mars Mercury Venus
 Sun Earth
 '''
-
-def main():
+def input_travels():
     paths = {}
     n = int(input())
     for i in range(n):
@@ -27,7 +26,19 @@ def main():
         else:
             paths.get(first_p).append(second_p)
 
+    return paths
+
+def print_travels(paths):
+    for first_p in paths:
+        for destination in paths.get(first_p):
+            print(first_p, destination)
     print(paths)
+    print((len(paths)))
+
+def main():
+    paths = input_travels()
+    print_travels(paths)
+
 
 if __name__ == '__main__':
     main()
