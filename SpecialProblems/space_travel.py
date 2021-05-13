@@ -28,12 +28,15 @@ def input_travels():
 
     return paths
 
+list_of_routes = []
 def print_travels(paths):
+
     for first_p in paths:
         for destination in paths.get(first_p):
             print(first_p, destination)
     print(paths)
     print((len(paths)))
+
 
 def main():
     paths = input_travels()
