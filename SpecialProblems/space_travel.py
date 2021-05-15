@@ -28,7 +28,6 @@ def input_travels():
 
     return paths
 
-list_of_routes = []
 def print_travels(paths):
 
     for first_p in paths:
