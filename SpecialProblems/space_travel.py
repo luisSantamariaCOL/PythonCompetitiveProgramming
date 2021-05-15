@@ -34,13 +34,31 @@ def print_travels(paths):
     for first_p in paths:
         for destination in paths.get(first_p):
             print(first_p, destination)
-    print(paths)
-    print((len(paths)))
+    # print(paths)
+    # print((len(paths)))
+
+def travel_each_planet(paths, planet, p_tostring):
+    p_tostring += " " + planet
+    if planet in paths:
+        destinys = paths.get(planet)
+        for destiny in destinys:
+            travel_each_planet(paths, destiny, p_tostring)
+    else:
+        if not p_tostring.endswith("Saturn"):
+            print(p_tostring.strip())
+
+def traveling(paths):
+    for first_p in paths:
+        travel_each_planet(paths, first_p, "")
+
+
 
 
 def main():
     paths = input_travels()
-    print_travels(paths)
+    print("dictionary: ", paths)
+    print("Travels that do not have Saturn as final destiny:")
+    traveling(paths)
 
 
 if __name__ == '__main__':
