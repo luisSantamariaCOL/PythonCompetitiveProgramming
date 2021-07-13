@@ -9,16 +9,14 @@ Your task is to find the smallest and the largest of the numbers that have lengt
 The required numbers should be non-negative integers written in the decimal base without leading zeroes.
 '''
 
-
-# def lenght_and_sum_of_digits(n):
-#     n_string = str(n)
-#     list = [int(x) for x in n_string]
-#     return len(list), sum(list)
-
-
 def main():
     m, s = [int(x) for x in input().split()]
 
+    if s == 0:
+        print("0 0" if m == 1 else "-1 -1")
+        return
+
+    sum_of_digits = s
     min, max = '', ''
 
     for i in range(m):
@@ -29,18 +27,21 @@ def main():
             max += str(s)
             s = 0
 
-    min = list(max)
-    min.reverse()
-    min = "".join(min)
-    min = int(min)
+    min = [int(x) for x in reversed(max)]
+    flag = False
+    for i, digit in enumerate(min):
+        if i == 0 and digit == 0:
+            min[i] += 1
+            flag = True
+        elif digit > 0 and flag:
+            min[i] -= 1
+            flag = False
 
-
-    print(min, max)
-
-    # try:
-    #     print("{} {}".format(dict[s][m - 1][0], dict[s][m - 1][-1]))
-    # except:
-    #     print("-1 -1")
+    if sum(min) == sum_of_digits:
+        min = "".join([str(x) for x in min])
+        print(min, max)
+    else:
+        print("-1 -1")
 
 if __name__ == '__main__':
     main()
